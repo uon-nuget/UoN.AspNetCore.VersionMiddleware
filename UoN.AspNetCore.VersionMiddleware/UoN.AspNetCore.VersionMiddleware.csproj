@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <PackageId>UoN.AspNetCore.VersionMiddleware</PackageId>
+    <PackageVersion>1.0.0</PackageVersion>
+    <Authors>UoN Application Development</Authors>
+    <Description>UoN shared code ASP.NET Core version middleware.</Description>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageReleaseNotes>First release</PackageReleaseNotes>
+    <Copyright>Copyright 2017 (c) University of Nottingham.</Copyright>
+    <PackageTags>uon version middleware</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
