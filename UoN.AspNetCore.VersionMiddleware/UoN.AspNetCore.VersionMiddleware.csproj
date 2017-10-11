@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <PackageId>UoN.AspNetCore.VersionMiddleware</PackageId>
-    <PackageVersion>1.0.0</PackageVersion>
+    <PackageVersion>1.0.0-beta01</PackageVersion>
     <Authors>UoN Application Development</Authors>
     <Description>UoN shared code ASP.NET Core version middleware.</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
