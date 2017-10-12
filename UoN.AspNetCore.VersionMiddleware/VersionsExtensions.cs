@@ -2,7 +2,7 @@
 using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 
-namespace UoN.AspNetCore.VersionExtensionMiddleware
+namespace UoN.AspNetCore.VersionMiddleware
 {
     public static class VersionExtensions
     {
