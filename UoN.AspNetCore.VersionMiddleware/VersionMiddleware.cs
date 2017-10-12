@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
-namespace UoN.NetCore.VersionExtensionMiddleware
+namespace UoN.AspNetCore.VersionMiddleware
 {
     public class VersionMiddleware
     {
