@@ -33,7 +33,7 @@ Acquire the library via one of the methods below, and add one of the above exten
 
 ### NuGet
 
-This library is hosted on nuget.org <TODO: add link>
+This library will be hosted on nuget.org from `1.0.0` at the latest.
 
 ### Build from source
 
