@@ -1,0 +1,10 @@
+language: csharp
+mono: none
+dotnet: 2.0.0
+dist: trusty
+script:
+ - dotnet restore
+ - dotnet build
+ - dotnet pack
+after_success:
+ - test $TRAVIS_BRANCH = "master" && test $TRAVIS_PULL_REQUEST = "false" && dotnet nuget push **/*.nupkg -k $NUGET_API_KEY -s https://www.nuget.org/api/v2/package
