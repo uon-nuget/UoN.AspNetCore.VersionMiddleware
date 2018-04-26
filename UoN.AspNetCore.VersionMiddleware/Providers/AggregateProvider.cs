@@ -8,7 +8,7 @@ namespace UoN.AspNetCore.VersionMiddleware.Providers
     /// Gets version information from multiple `IVersionInformationProviders`
     /// aggregating the results into a Dictionary.
     /// </summary>
-    public class AggregateVersionInformationProvider : IVersionInformationProvider
+    public class AggregateProvider : IVersionInformationProvider
     {
         public IDictionary<string, IVersionInformationProvider> Providers { get; set; }
 
@@ -17,7 +17,7 @@ namespace UoN.AspNetCore.VersionMiddleware.Providers
         /// multiple other providers.
         /// </summary>
         /// <param name="providers">Optional providers to initialise this Aggregate Provider</param>
-        public AggregateVersionInformationProvider(
+        public AggregateProvider(
             IDictionary<string, IVersionInformationProvider> providers = null)
         {
             Providers = providers;
@@ -26,7 +26,7 @@ namespace UoN.AspNetCore.VersionMiddleware.Providers
         /// <summary>
         /// Gets Version Information from all the `IVersionInformationProviders
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A Dictionary of all the version information from each keyed provider.</returns>
         public async Task<object> GetVersionInformationAsync()
             => (await Task.WhenAll(Providers.Select(async x =>
                     new KeyValuePair<string, object>(
