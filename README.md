@@ -2,7 +2,6 @@
 
 [![License](https://img.shields.io/badge/licence-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.org/UniversityOfNottingham/UoN.AspNetCore.VersionMiddleware.svg?branch=develop)](https://travis-ci.org/UniversityOfNottingham/UoN.AspNetCore.VersionMiddleware)
-
 [![NuGet](https://img.shields.io/nuget/v/UoN.AspNetCore.VersionMiddleware.svg)](https://www.nuget.org/packages/UoN.AspNetCore.VersionMiddleware/)
 
 
