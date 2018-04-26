@@ -7,11 +7,23 @@
     <Authors>UoN Application Development</Authors>
 
     <Description>
-Version middleware for ASP.NET Core 2, allows exposing version information via an endpoint.
+      Version middleware for ASP.NET Core 2, allows exposing version information via an endpoint.
     </Description>
 
     <PackageReleaseNotes>
-This release enables other sources for versioning than just `AssemblyInformationalVersion`
+      This release enables other sources for versioning than just `AssemblyInformationalVersion`.
+
+      It includes an interface for custom Version Information Providers.
+
+      It includes the following Version Information Provider implementations:
+      - `AssemblyInformationalVersionProvider` - this mimics the 1.0.0 behaviour of the package by fetching information version metadata for a given .NET Assembly
+      - `ObjectProvider` - this takes any .NET Object and just passes it through as version information, so you can output any custom information without writing a provider.
+      - `AggregateProvider` - this aggregates information from multiple other providers into a Dictionary.
+
+      There are no breaking changes - the previous Middleware Extensions work as they did before, but can now optionally work with a specific provider instead of the
+      default `AssemblyInformationalVersionProvider`.
+      
+      All version information output is serialised as JSON by the middleware at this time.
     </PackageReleaseNotes>
 
     <Copyright>Copyright 2018 (c) University of Nottingham.</Copyright>
