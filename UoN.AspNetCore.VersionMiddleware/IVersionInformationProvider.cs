@@ -4,6 +4,6 @@ namespace UoN.AspNetCore.VersionMiddleware
 {
     public interface IVersionInformationProvider
     {
-        Task<string> GetVersionInformationAsync();
+        Task<object> GetVersionInformationAsync();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace UoN.AspNetCore.VersionMiddleware
 {
@@ -18,7 +19,7 @@ namespace UoN.AspNetCore.VersionMiddleware
             context.Response.ContentType = "application/json";
 
             await context.Response.WriteAsync(
-                await _provider.GetVersionInformationAsync());
+                JsonConvert.SerializeObject(await _provider.GetVersionInformationAsync()));
         }
     }
 }

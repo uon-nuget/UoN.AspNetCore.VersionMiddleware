@@ -12,7 +12,7 @@ namespace UoN.AspNetCore.VersionMiddleware.Providers
             _versionAssembly = versionAssembly;
         }
 
-        public async Task<string> GetVersionInformationAsync()
+        public async Task<object> GetVersionInformationAsync()
             => _versionAssembly
                 .GetCustomAttribute<AssemblyInformationalVersionAttribute>()
                 .InformationalVersion;
