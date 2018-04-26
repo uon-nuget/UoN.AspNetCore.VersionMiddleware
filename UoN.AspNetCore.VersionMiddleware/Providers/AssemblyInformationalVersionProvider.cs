@@ -13,10 +13,13 @@ namespace UoN.AspNetCore.VersionMiddleware.Providers
         /// <summary>
         /// Create a version provider for a given .NET Assembly.
         /// </summary>
-        /// <param name="versionAssembly">The .NET Assembly to get `AssemblyInformationalVersion` from.</param>
-        public AssemblyInformationalVersionProvider(Assembly versionAssembly)
+        /// <param name="versionAssembly">
+        /// Optional .NET Assembly to get `AssemblyInformationalVersion` from.
+        /// Defaults to Entry Assembly.
+        /// </param>
+        public AssemblyInformationalVersionProvider(Assembly versionAssembly = null)
         {
-            _versionAssembly = versionAssembly;
+            _versionAssembly = versionAssembly ?? Assembly.GetEntryAssembly();
         }
 
         /// <summary>

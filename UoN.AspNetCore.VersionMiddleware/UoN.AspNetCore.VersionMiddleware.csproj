@@ -21,7 +21,7 @@
       - `AggregateProvider` - this aggregates information from multiple other providers into a Dictionary.
 
       There are no breaking changes - the previous Middleware Extensions work as they did before, but can now optionally work with a specific provider instead of the
-      default `AssemblyInformationalVersionProvider`.
+      default `AssemblyInformationalVersionProvider`, or an arbitrary object which will be passed to `ObjectProvider`.
       
       All version information output is serialised as JSON by the middleware at this time.
     </PackageReleaseNotes>

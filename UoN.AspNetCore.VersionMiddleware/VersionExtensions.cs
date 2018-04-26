@@ -40,6 +40,8 @@ namespace UoN.AspNetCore.VersionMiddleware
         /// 
         /// Alternatively can be an arbitrary .NET Object to be used as version information.
         /// 
+        /// Alternatively can be a .NET Assembly to get the `AssemblyInformationalVersion` from.
+        /// 
         /// If none is specified, `AssemblyInformationVersonProvider` is used on the Entry Assembly.
         /// </param>
         /// <returns>The `IApplicationBuilder` instance</returns>
@@ -50,21 +52,29 @@ namespace UoN.AspNetCore.VersionMiddleware
         {
             if (app == null) throw new ArgumentNullException(nameof(app));
 
-            if (provider == null)
-                // essentially default to AssemblyInformationalVersionProvider
-                // with the EntryAssembly, as per 1.0.0 behaviour
-                return app.MapVersion(path, Assembly.GetEntryAssembly());
+            // switch on what we've been passed
+            // to choose appropriate shortcut behaviours
+            switch (provider ?? Assembly.GetEntryAssembly()) // default to 1.0.0 behaviour
+            {
+                // if we've been passed an assembly, use the assembly extension above
+                case Assembly a:
+                    return app.MapVersion(path, a);
 
-            // If we've been given an object that is NOT a provider implementation
-            // assume it is intended to be version information
-            // and use it with an ObjectProvider
-            if (!(provider is IVersionInformationProvider))
-                provider = new ObjectProvider(provider);
-
-            return app.Map(path, appBuilder =>
-                appBuilder.UseMiddleware<VersionMiddleware>(provider));
-
+                // if we've been passed a provider, use it directly
+                case IVersionInformationProvider p:
+                    return app.Map(path, appBuilder =>
+                        appBuilder.UseMiddleware<VersionMiddleware>(p));
+                
+                // If we've been given an object that doesn't match the above
+                // assume it is intended to be version information
+                // and use it with an ObjectProvider
+                default:
+                    return app.Map(path, appBuilder =>
+                        appBuilder.UseMiddleware<VersionMiddleware>());
+            }
         }
+
+        // TODO REWRITE DOCUMENTS TO REFLECT COOL NEW DESIGN
 
         /// <summary>
         /// Adds the endpoint `/version` to the pipeline,
@@ -76,6 +86,8 @@ namespace UoN.AspNetCore.VersionMiddleware
         /// An optional `IVersionInformationProvider` to provide the response body.
         /// 
         /// Alternatively can be an arbitrary .NET Object to be used as version information.
+        /// 
+        /// Alternatively can be a .NET Assembly to get the `AssemblyInformationalVersion` from.
         /// 
         /// If none is specified, `AssemblyInformationVersonProvider` is used on the Entry Assembly.
         /// </param>
