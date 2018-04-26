@@ -1,14 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
-    <PackageId>UoN.AspNetCore.VersionMiddleware</PackageId>
-    <PackageVersion>1.0.0</PackageVersion>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageVersion>1.1.0-alpha1</PackageVersion>
+
     <Authors>UoN Application Development</Authors>
-    <Description>UoN shared code ASP.NET Core version middleware.</Description>
+
+    <Description>
+Version middleware for ASP.NET Core 2, allows exposing version information via an endpoint.
+    </Description>
+
+    <PackageReleaseNotes>
+This release enables other sources for versioning than just `AssemblyInformationalVersion`
+    </PackageReleaseNotes>
+
+    <Copyright>Copyright 2018 (c) University of Nottingham.</Copyright>
+
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>First release</PackageReleaseNotes>
-    <Copyright>Copyright 2017 (c) University of Nottingham.</Copyright>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/UniversityOfNottingham/UoN.AspNetCore.VersionMiddleware/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/UniversityOfNottingham/UoN.AspNetCore.VersionMiddleware</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/UniversityOfNottingham/UoN.AspNetCore.VersionMiddleware</RepositoryUrl>
     <PackageTags>uon version middleware</PackageTags>
   </PropertyGroup>
 
