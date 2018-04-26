@@ -3,6 +3,9 @@
 [![License](https://img.shields.io/badge/licence-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.org/UniversityOfNottingham/UoN.AspNetCore.VersionMiddleware.svg?branch=develop)](https://travis-ci.org/UniversityOfNottingham/UoN.AspNetCore.VersionMiddleware)
 
+[![NuGet](https://img.shields.io/nuget/v/UoN.AspNetCore.VersionMiddleware.svg)](https://www.nuget.org/packages/UoN.AspNetCore.VersionMiddleware/)
+
+
 ## What is it?
 
 This is middleware for ASP.Net Core designed to report on the assembly informational version of your web project's assembly.
@@ -28,24 +31,7 @@ The library targets `netstandard2.0` and depends upon ASP.Net Core 2.0.
 
 If you can use ASP.Net Core 2, you can use this library.
 
-## Usage
-
-Acquire the library via one of the methods below, and add one of the above extension methods to your ASP.Net Core pipeline.
-
-### NuGet
-
-This library will be hosted on nuget.org from `1.0.0` at the latest.
-
-### Build from source
-
-We recommend building with the `dotnet` cli, but since the package targets `netstandard2.0` and depends only on ASP.Net Core 2.0, you should be able to build it in any tooling that supports those requirements.
-
-- Have the .NET Core SDK 2.0 or newer
-- `dotnet build`
-- Optionally `dotnet pack`
-- Reference the resulting assembly, or NuGet package.
-
-### An example:
+## Example usage
 
 #### `Startup.cs`
 
@@ -79,6 +65,15 @@ public class Startup
   }
 }
 ```
+
+## Building from source
+
+We recommend building with the `dotnet` cli, but since the package targets `netstandard2.0` and depends only on ASP.Net Core 2.0, you should be able to build it in any tooling that supports those requirements.
+
+- Have the .NET Core SDK 2.0 or newer
+- `dotnet build`
+- Optionally `dotnet pack`
+- Reference the resulting assembly, or NuGet package.
 
 ## Contributing
 
