@@ -6,17 +6,15 @@ namespace UoN.AspNetCore.VersionMiddleware
 {
     public class VersionMiddleware
     {
-        private readonly Assembly _versionAssembly;
+        private readonly IVersionInformationProvider _provider;
 
-        public VersionMiddleware(RequestDelegate next, Assembly versionAssembly)
+        public VersionMiddleware(RequestDelegate next, IVersionInformationProvider provider)
         {
-            _versionAssembly = versionAssembly;
+            _provider = provider;
         }
 
         public async Task Invoke(HttpContext context)
             => await context.Response.WriteAsync(
-                _versionAssembly
-                    .GetCustomAttribute<AssemblyInformationalVersionAttribute>()
-                    .InformationalVersion);
+                await _provider.GetVersionInformationAsync());
     }
 }

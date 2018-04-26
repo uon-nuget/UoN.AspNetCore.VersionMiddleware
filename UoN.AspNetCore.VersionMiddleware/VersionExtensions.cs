@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using Microsoft.AspNetCore.Builder;
+using UoN.AspNetCore.VersionMiddleware.Providers;
 
 namespace UoN.AspNetCore.VersionMiddleware
 {
@@ -14,7 +15,8 @@ namespace UoN.AspNetCore.VersionMiddleware
             }
             return app.Map(path, appBuilder =>
             {
-                appBuilder.UseMiddleware<VersionMiddleware>(assembly);
+                appBuilder.UseMiddleware<VersionMiddleware>(
+                    new AssemblyInformationalVersionProvider(assembly));
             });
         }
 
