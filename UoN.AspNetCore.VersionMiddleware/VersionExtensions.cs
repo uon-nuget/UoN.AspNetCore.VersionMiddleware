@@ -40,4 +40,3 @@ namespace UoN.AspNetCore.VersionMiddleware
                ?? throw new ArgumentNullException(nameof(app));
     }
 }
-}

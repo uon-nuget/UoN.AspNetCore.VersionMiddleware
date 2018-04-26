@@ -7,4 +7,7 @@ script:
  - dotnet build
  - dotnet pack
 after_success:
- - test $TRAVIS_BRANCH = "master" && test $TRAVIS_PULL_REQUEST = "false" && dotnet nuget push **/*.nupkg -k $NUGET_API_KEY -s https://www.nuget.org/api/v2/package
+ - |
+    test ($TRAVIS_BRANCH = "master" || $TRAVIS_BRANCH = "next") && \
+    test $TRAVIS_PULL_REQUEST = "false" && \
+    dotnet nuget push **/*.nupkg -k $NUGET_API_KEY -s https://www.nuget.org/api/v2/package
