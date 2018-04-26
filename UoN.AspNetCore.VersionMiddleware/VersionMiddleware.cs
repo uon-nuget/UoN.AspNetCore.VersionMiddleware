@@ -14,7 +14,12 @@ namespace UoN.AspNetCore.VersionMiddleware
         }
 
         public async Task Invoke(HttpContext context)
-            => await context.Response.WriteAsync(
+        {
+            // make it clear that we're always returning json, even if it's just a string
+            context.Response.ContentType = "application/json";
+
+            await context.Response.WriteAsync(
                 await _provider.GetVersionInformationAsync());
+        }
     }
 }
