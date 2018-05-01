@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Reflection;
 using Microsoft.AspNetCore.Builder;
-using UoN.AspNetCore.VersionMiddleware.Providers;
-using UoN.VersionInformation;
 using UoN.VersionInformation.Providers;
 
 namespace UoN.AspNetCore.VersionMiddleware
