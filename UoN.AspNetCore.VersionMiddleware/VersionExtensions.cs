@@ -2,6 +2,8 @@
 using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using UoN.AspNetCore.VersionMiddleware.Providers;
+using UoN.VersionInformation;
+using UoN.VersionInformation.Providers;
 
 namespace UoN.AspNetCore.VersionMiddleware
 {
@@ -10,6 +12,7 @@ namespace UoN.AspNetCore.VersionMiddleware
     /// </summary>
     public static class VersionExtensions
     {
+        // This extension is limited to Assembly params to preserve 1.0.0 compatibility
         /// <summary>
         /// Adds a custom endpoint to the pipeline,
         /// responding only to GET requests with the
@@ -31,71 +34,56 @@ namespace UoN.AspNetCore.VersionMiddleware
         /// <summary>
         /// Adds a custom endpoint to the pipeline,
         /// responding only to GET requests with the output
-        /// from the specified `IVersionInformationProvider`.
+        /// from the specified version source.
         /// </summary>
         /// <param name="app">The `IApplicationBuilder` instance from `Startup.Configure()`.</param>
         /// <param name="path">The endpoint path to use.</param>
-        /// <param name="provider">
-        /// An optional `IVersionInformationProvider` to provide the response body.
+        /// <param name="source">
+        /// An optional source supported by the configured VersionInformationService.
         /// 
-        /// Alternatively can be an arbitrary .NET Object to be used as version information.
-        /// 
-        /// Alternatively can be a .NET Assembly to get the `AssemblyInformationalVersion` from.
-        /// 
-        /// If none is specified, `AssemblyInformationVersonProvider` is used on the Entry Assembly.
+        /// Defaults to Entry Assembly Informational Version.
         /// </param>
         /// <returns>The `IApplicationBuilder` instance</returns>
         public static IApplicationBuilder MapVersion(
             this IApplicationBuilder app,
             string path,
-            object provider = null)
+            object source = null)
         {
             if (app == null) throw new ArgumentNullException(nameof(app));
 
             // switch on what we've been passed
             // to choose appropriate shortcut behaviours
-            switch (provider ?? Assembly.GetEntryAssembly()) // default to 1.0.0 behaviour
+            switch (source ?? Assembly.GetEntryAssembly()) // default to 1.0.0 behaviour
             {
-                // if we've been passed an assembly, use the assembly extension above
+                // If we've been passed an assembly, use the assembly extension above.
+                // This is a good safety in case Assembly Type Handlers have been cleared
+                // from the configured service.
                 case Assembly a:
                     return app.MapVersion(path, a);
 
-                // if we've been passed a provider, use it directly
-                case IVersionInformationProvider p:
-                    return app.Map(path, appBuilder =>
-                        appBuilder.UseMiddleware<VersionMiddleware>(p));
-                
-                // If we've been given an object that doesn't match the above
-                // assume it is intended to be version information
-                // and use it with an ObjectProvider
+                // Otherwise just let the middleware deal with it as configured
                 default:
                     return app.Map(path, appBuilder =>
-                        appBuilder.UseMiddleware<VersionMiddleware>());
+                        appBuilder.UseMiddleware<VersionMiddleware>(source));
             }
         }
-
-        // TODO REWRITE DOCUMENTS TO REFLECT COOL NEW DESIGN
 
         /// <summary>
         /// Adds the endpoint `/version` to the pipeline,
         /// responding only to GET requests with the output
-        /// from the specified `IVersionInformationProvider`.
+        /// from the specified version source.
         /// </summary>
         /// <param name="app">The `IApplicationBuilder` instance from `Startup.Configure()`.</param>
-        /// <param name="provider">
-        /// An optional `IVersionInformationProvider` to provide the response body.
+        /// <param name="source">
+        /// An optional source supported by the configured VersionInformationService.
         /// 
-        /// Alternatively can be an arbitrary .NET Object to be used as version information.
-        /// 
-        /// Alternatively can be a .NET Assembly to get the `AssemblyInformationalVersion` from.
-        /// 
-        /// If none is specified, `AssemblyInformationVersonProvider` is used on the Entry Assembly.
+        /// Defaults to Entry Assembly Informational Version.
         /// </param>
         /// <returns>The `IApplicationBuilder` instance</returns>
         public static IApplicationBuilder UseVersion(
             this IApplicationBuilder app,
-            object provider = null)
-            => app?.MapVersion("/version", provider)
+            object source = null)
+            => app?.MapVersion("/version", source)
                ?? throw new ArgumentNullException(nameof(app));
     }
 }

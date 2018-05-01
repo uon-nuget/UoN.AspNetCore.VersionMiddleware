@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using UoN.VersionInformation;
+using UoN.VersionInformation.Providers;
 
 namespace UoN.AspNetCore.VersionMiddleware
 {
@@ -23,11 +24,12 @@ namespace UoN.AspNetCore.VersionMiddleware
         /// 
         /// See UoN.VersionInformation Docs.
         /// 
-        /// Defaults to Entry Assembly.
+        /// Defaults to Entry Assembly Informational Version.
         /// </param>
         public VersionMiddleware(RequestDelegate next, object versionSource = null)
         {
-            _versionSource = versionSource ?? Assembly.GetEntryAssembly();
+            _versionSource = versionSource ??
+                new AssemblyInformationalVersionProvider(Assembly.GetEntryAssembly());
         }
 
         public async Task Invoke(HttpContext context)
