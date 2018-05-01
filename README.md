@@ -13,7 +13,7 @@ We use it at UoN so that we can check the version of a web app wherever it's dep
 
 ## What are its features?
 
-It exposes the version output of [Uon.VersionInformation](https://github.com/uon-nuget/UoN.VersionInformation) as JSON data at an http endpoint.
+It exposes the version output of [UoN.VersionInformation](https://github.com/uon-nuget/UoN.VersionInformation) as JSON data at an http endpoint.
 
 ### Middleware Extension Methods
 It provides three `IApplicationBuilder` Extension methods for you to use in `Startup.Configure()`:
