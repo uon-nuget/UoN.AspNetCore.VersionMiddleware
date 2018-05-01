@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <PackageVersion>1.1.0-alpha4</PackageVersion>
+    <PackageVersion>1.1.0-beta1</PackageVersion>
 
     <Authors>UoN Application Development</Authors>
 
@@ -11,32 +11,29 @@
     </Description>
 
     <PackageReleaseNotes>
-      This release enables other sources for versioning than just `AssemblyInformationalVersion`.
+This release enables other sources for versioning than just `AssemblyInformationalVersion`.
 
-      It includes an interface for custom Version Information Providers.
+It depends upon `UoN.VersionInformation` to do this.
 
-      It includes the following Version Information Provider implementations:
-      - `AssemblyInformationalVersionProvider` - this mimics the 1.0.0 behaviour of the package by fetching information version metadata for a given .NET Assembly
-      - `ObjectProvider` - this takes any .NET Object and just passes it through as version information, so you can output any custom information without writing a provider.
-      - `AggregateProvider` - this aggregates information from multiple other providers into a Dictionary.
-
-      There are no breaking changes - the previous Middleware Extensions work as they did before, but can now optionally work with a specific provider instead of the
-      default `AssemblyInformationalVersionProvider`, or an arbitrary object which will be passed to `ObjectProvider`.
+There are no breaking changes - the previous Middleware Extensions work as they did before by default,
+but now support the added functionality of `UoN.VersionInformation`.
       
-      All version information output is serialised as JSON by the middleware at this time.
+All version information output is serialised as JSON by the middleware at this time.
     </PackageReleaseNotes>
 
     <Copyright>Copyright 2018 (c) University of Nottingham.</Copyright>
 
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageIconUrl>https://raw.githubusercontent.com/uon-nuget/assets/master/nuget-package-icon.png</PackageIconUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/UniversityOfNottingham/UoN.AspNetCore.VersionMiddleware/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/UniversityOfNottingham/UoN.AspNetCore.VersionMiddleware</PackageProjectUrl>
     <RepositoryUrl>https://github.com/UniversityOfNottingham/UoN.AspNetCore.VersionMiddleware</RepositoryUrl>
-    <PackageTags>uon version middleware</PackageTags>
+    <PackageTags>uon version middleware aspnetcore netstandard</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0" />
+    <PackageReference Include="UoN.VersionInformation" Version="1.0.0-beta3" />
   </ItemGroup>
 
 </Project>
