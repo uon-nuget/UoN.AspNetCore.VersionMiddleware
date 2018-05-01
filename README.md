@@ -1,7 +1,7 @@
 # UoN.AspNetCore.VersionMiddleware
 
 [![License](https://img.shields.io/badge/licence-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Build Status](https://travis-ci.org/UniversityOfNottingham/UoN.AspNetCore.VersionMiddleware.svg?branch=develop)](https://travis-ci.org/UniversityOfNottingham/UoN.AspNetCore.VersionMiddleware)
+[![Build Status](https://travis-ci.org/UniversityOfNottingham/UoN.AspNetCore.VersionMiddleware.svg?branch=master)](https://travis-ci.org/UniversityOfNottingham/UoN.AspNetCore.VersionMiddleware)
 [![NuGet](https://img.shields.io/nuget/v/UoN.AspNetCore.VersionMiddleware.svg)](https://www.nuget.org/packages/UoN.AspNetCore.VersionMiddleware/)
 
 
@@ -13,48 +13,23 @@ We use it at UoN so that we can check the version of a web app wherever it's dep
 
 ## What are its features?
 
+It exposes the version output of [Uon.VersionInformation](https://github.com/uon-nuget/UoN.VersionInformation) as JSON data at an http endpoint.
+
 ### Middleware Extension Methods
 It provides three `IApplicationBuilder` Extension methods for you to use in `Startup.Configure()`:
 
-- `app.UseVersion([provider|object])`
+- `app.UseVersion(source)`
   - adds a `/version` route to the ASP.Net Core pipeline.
-  - returns one of the following:
-    - if an implementation of `IVersionInformationProvider` was passed, returns the result of its `GetVersionInformationAsync()` method serialized as JSON
-    - if an object that **does not** implement `IVersionInformationProvider` was passed, returns that object serialized as JSON
-    - otherwise returns the `AssemblyInformationalVersion` of the entry assembly (i.e. containing this `Startup` class.) as a JSON string
-- `app.MapVersion(path, [provider|object])`
+  - expects a valid source accepted by `VersionInformationService`
+- `app.MapVersion(path, source)`
   - behaves as above but with a custom route path
 - `app.MapVersion(path, assembly)`
   - provides a custom route path
   - returns `AssemblyInformationalVersion` for the specified assembly as a JSON string
 
-### Version Information Providers
-
-It also provides three basic implementations of `IVersionInformationProvider`.
-
-#### AssemblyInformationalVersionProvider
-
-This provides the default behaviour of each extension method, and is the behaviour the package used in version 1.0.0.
-
-It simply gets the `AssemblyInformationalVersion` of a given .NET Assembly and returns it as a string.
-
-You're unlikely to use this directly except as part of an `AggregateProvider` configuration, because you can instead use the default extension method behaviours as follows:
-
-```csharp
-// this extension method usage:
-app.UseVersion();
-app.MapVersion("/route");
-app.MapVersion("/route", MyAssembly);
-
-// is equivalent to
-app.UseVersion(new AssemblyInformationalVersionProvider());
-app.MapVersion("/route", new AssemblyInformationalVersionProvider());
-app.MapVersion("/route", new AssemblyInformationalVersionProvider(MyAssembly));
-```
-
 ## Dependencies
 
-The library targets `netstandard2.0` and depends upon ASP.NET Core 2.0.
+The library targets `netstandard2.0` and depends upon ASP.NET Core 2.0 and UoN.VersionInformation.
 
 If you can use ASP.NET Core 2, you can use this library.
 
