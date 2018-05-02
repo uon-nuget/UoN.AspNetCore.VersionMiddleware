@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <PackageVersion>1.1.0-beta5</PackageVersion>
+    <PackageVersion>1.1.0</PackageVersion>
 
     <Authors>UoN Application Development</Authors>
 
@@ -33,7 +33,7 @@ All version information output is serialised as JSON by the middleware at this t
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0" />
-    <PackageReference Include="UoN.VersionInformation" Version="1.0.0-beta6" />
+    <PackageReference Include="UoN.VersionInformation" Version="1.0.0" />
   </ItemGroup>
 
 </Project>
