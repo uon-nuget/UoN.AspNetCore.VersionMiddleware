@@ -47,7 +47,7 @@ namespace UoN.AspNetCore.VersionMiddleware
 
             await context.Response.WriteAsync(
                 JsonConvert.SerializeObject(
-                    service.FromSourceAsync(_versionSource)));
+                    await service.FromSourceAsync(_versionSource)));
         }
     }
 }
