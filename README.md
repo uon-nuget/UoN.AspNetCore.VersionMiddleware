@@ -1,7 +1,7 @@
 # UoN.AspNetCore.VersionMiddleware
 
 [![License](https://img.shields.io/badge/licence-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Build Status](https://travis-ci.org/UniversityOfNottingham/UoN.AspNetCore.VersionMiddleware.svg?branch=master)](https://travis-ci.org/UniversityOfNottingham/UoN.AspNetCore.VersionMiddleware)
+[![Build Status](https://travis-ci.org/uon-nuget/UoN.AspNetCore.VersionMiddleware.svg?branch=master)](https://travis-ci.org/uon-nuget/UoN.AspNetCore.VersionMiddleware)
 [![NuGet](https://img.shields.io/nuget/v/UoN.AspNetCore.VersionMiddleware.svg)](https://www.nuget.org/packages/UoN.AspNetCore.VersionMiddleware/)
 
 
