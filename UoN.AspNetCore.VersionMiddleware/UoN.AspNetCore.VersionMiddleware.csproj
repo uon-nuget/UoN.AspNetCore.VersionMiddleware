@@ -33,7 +33,7 @@ All version information output is serialised as JSON by the middleware at this t
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0" />
-    <PackageReference Include="UoN.VersionInformation" Version="1.0.0-beta3" />
+    <PackageReference Include="UoN.VersionInformation" Version="1.0.0-beta4" />
   </ItemGroup>
 
 </Project>
