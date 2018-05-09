@@ -1,8 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <PackageVersion>1.1.0</PackageVersion>
+    <PackageVersion>1.1.1</PackageVersion>
 
     <Authors>UoN Application Development</Authors>
 
@@ -11,14 +11,7 @@
     </Description>
 
     <PackageReleaseNotes>
-This release enables other sources for versioning than just `AssemblyInformationalVersion`.
-
-It depends upon `UoN.VersionInformation` to do this.
-
-There are no breaking changes - the previous Middleware Extensions work as they did before by default,
-but now support the added functionality of `UoN.VersionInformation`.
-      
-All version information output is serialised as JSON by the middleware at this time.
+This release makes the JSON output from the middleware indented.
     </PackageReleaseNotes>
 
     <Copyright>Copyright 2018 (c) University of Nottingham.</Copyright>
