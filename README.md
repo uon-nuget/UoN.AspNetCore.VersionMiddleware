@@ -21,6 +21,7 @@ It provides three `IApplicationBuilder` Extension methods for you to use in `Sta
 - `app.UseVersion(source)`
   - adds a `/version` route to the ASP.Net Core pipeline.
   - expects a valid source accepted by `VersionInformationService`
+  - if `source` is `null` then defaults to using [`UoN.VersionInformation.Providers.AssemblyInformationalVersionProvider`](https://github.com/uon-nuget/UoN.VersionInformation), which in turn uses `AssemblyInformationalVersion` from the current assembly's metadata.
 - `app.MapVersion(path, source)`
   - behaves as above but with a custom route path
 - `app.MapVersion(path, assembly)`
