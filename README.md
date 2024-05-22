@@ -1,3 +1,9 @@
+> [!NOTE]
+> This repository is archived. The source for this package has moved into a monorepo here:
+>
+> :octocat: https://github.com/uon-nuget/UoN.VersionInformation
+
+
 # UoN.AspNetCore.VersionMiddleware
 
 [![License](https://img.shields.io/badge/licence-MIT-blue.svg)](https://opensource.org/licenses/MIT)
